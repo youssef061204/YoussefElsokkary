@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title: "Youssef Elsokkary — Software Engineering & Applied ML",
-    description: "Working systems, measured results, and the engineering decisions behind them.",
+    description: "Four software engineering and machine learning case studies: TradePersona, LedgerMatch, AI Operator, and Zentro.",
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },

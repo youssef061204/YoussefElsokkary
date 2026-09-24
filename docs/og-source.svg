@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#1d2523"/>
-  <rect x="70" y="68" width="36" height="7" fill="#ca5c36"/>
-  <text x="70" y="161" font-family="Arial, sans-serif" font-size="25" letter-spacing="5" fill="#abc6b4">SOFTWARE ENGINEERING × APPLIED ML</text>
-  <text x="68" y="356" font-family="Arial, sans-serif" font-weight="700" font-size="96" letter-spacing="-6" fill="#f4f2ec">Youssef</text>
-  <text x="68" y="452" font-family="Arial, sans-serif" font-weight="700" font-size="96" letter-spacing="-6" fill="#f4f2ec">Elsokkary<tspan fill="#ca5c36">.</tspan></text>
-  <line x1="70" x2="1130" y1="540" y2="540" stroke="#56655d"/>
-  <text x="70" y="578" font-family="Arial, sans-serif" font-size="23" fill="#bfd0c3">Working systems. Measured results. Engineering decisions.</text>
+  <rect width="1200" height="630" fill="#11191d"/>
+  <rect x="70" y="68" width="36" height="7" fill="#ccb89a"/>
+  <text x="70" y="161" font-family="Arial, sans-serif" font-size="25" letter-spacing="5" fill="#aab8bb">SOFTWARE ENGINEERING / APPLIED MACHINE LEARNING</text>
+  <text x="68" y="356" font-family="Arial, sans-serif" font-weight="700" font-size="96" letter-spacing="-6" fill="#ebece7">Youssef</text>
+  <text x="68" y="452" font-family="Arial, sans-serif" font-weight="700" font-size="96" letter-spacing="-6" fill="#ebece7">Elsokkary<tspan fill="#ccb89a">.</tspan></text>
+  <line x1="70" x2="1130" y1="540" y2="540" stroke="#35444a"/>
+  <text x="70" y="578" font-family="Arial, sans-serif" font-size="23" fill="#aab8bb">TradePersona / LedgerMatch / AI Operator / Zentro</text>
 </svg>
