@@ -17,22 +17,23 @@ export default function Home() {
           <div className="hero__top"><span className="eyebrow">Software engineering / applied machine learning</span><span className="hero__index">PORTFOLIO / 2026</span></div>
           <div className="hero__content">
             <h1 id="hero-title">Youssef<br /><em>Elsokkary</em><span className="period">.</span></h1>
-            <div className="hero__aside"><p>I&apos;m a software engineer working across web applications and machine learning. Here are four projects, with the code, results, and decisions behind them.</p><a className="text-link" href="#work">View projects <span aria-hidden="true">↘</span></a></div>
+            <div className="hero__aside"><p>I&apos;m a software engineer working across web applications and machine learning. Here are {projects.length} projects, with the code, results, and decisions behind them.</p><a className="text-link" href="#work">View projects <span aria-hidden="true">↘</span></a></div>
           </div>
-          <div className="hero__bottom"><span>Four projects / Code, demos, and measured results</span><span>Toronto, Canada</span></div>
+          <div className="hero__bottom"><span>{projects.length} projects / Code, demos, and measured results</span><span>Toronto, Canada</span></div>
         </section>
 
         <section id="work" className="work-section" aria-labelledby="work-title">
-          <div className="wrap"><div className="section-intro"><span className="eyebrow">01 / Projects</span><h2 id="work-title">Selected <em>work.</em></h2><p>Trading-history analysis, payment reconciliation, a local coding agent, and an agent marketplace prototype. Each case study covers the implementation, evaluation, and limits.</p></div>
+          <div className="wrap"><div className="section-intro"><span className="eyebrow">01 / Projects</span><h2 id="work-title">Selected <em>work.</em></h2><p>Traffic intelligence, trading-history analysis, payment reconciliation, and agent systems. Each case study covers the implementation, evaluation, and limits.</p></div>
             <div className="project-list">
               {projects.map((project, index) => (
                 <article className={"project-row project-row--" + project.accent} key={project.slug}>
                   <div className="project-row__copy">
-                    <div className="project-row__meta"><span>{String(index + 1).padStart(2, "0")} / 04</span><span>{project.category}</span></div>
+                    <div className="project-row__meta"><span>{String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2,"0")}</span><span>{project.category}</span></div>
                     <h3><Link href={"/projects/" + project.slug}>{project.name}<span aria-hidden="true">↗</span></Link></h3>
                     <p className="project-row__intro">{project.intro}</p>
                     {project.metrics.length > 0 ? <div className="project-row__stat"><strong>{project.metrics[0].value}</strong><span>{project.metrics[0].label}<small>{project.metrics[0].detail}</small></span></div> : <div className="project-row__stat project-row__stat--text"><strong>Prototype</strong><span>Task routing, result checks, and settlement records</span></div>}
-                    <div className="project-row__actions"><Link className="button button--dark" href={"/projects/" + project.slug}>Read case study <span aria-hidden="true">↗</span></Link><a className="button button--outline" href={project.github} target="_blank" rel="noreferrer">Source code <span aria-hidden="true">↗</span></a></div>
+                    {project.slug === "atlas" && <div className="project-mini-metrics">{project.metrics.slice(1).map(metric=><div key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span></div>)}</div>}
+                    <div className="project-row__actions">{project.live && <a className="button button--dark" href={project.live} target="_blank" rel="noreferrer">Live demo <span aria-hidden="true">↗</span></a>}<Link className={"button "+(project.live?"button--outline":"button--dark")} href={"/projects/" + project.slug}>Read case study <span aria-hidden="true">↗</span></Link><a className="button button--outline" href={project.github} target="_blank" rel="noreferrer">Source code <span aria-hidden="true">↗</span></a></div>
                   </div>
                   <Link className="project-row__visual" href={"/projects/" + project.slug} aria-label={"View " + project.name + " case study"}><ProjectVisual project={project} priority={index === 0} /></Link>
                 </article>

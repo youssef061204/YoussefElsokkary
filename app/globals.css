@@ -259,3 +259,6 @@ em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+.project-mini-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 20px; max-width: 440px; }
+.project-mini-metrics strong { display: block; color: var(--project-accent); font-size: 1.05rem; }
+.project-mini-metrics span { display: block; color: var(--muted); font-size: .65rem; line-height: 1.5; margin-top: 5px; }

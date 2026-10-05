@@ -1,7 +1,7 @@
 import { projects } from "../app/lib/projects.ts";
 
 const links = [
-  ...projects.flatMap((project) => [project.github, ...project.docs.map((item) => item.url)]),
+  ...projects.flatMap((project) => [project.github, ...(project.live ? [project.live] : []), ...project.docs.map((item) => item.url)]),
   "https://github.com/youssef061204",
   "https://www.linkedin.com/in/youssef-elsokkary-2135422aa/",
 ];

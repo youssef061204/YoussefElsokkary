@@ -1,6 +1,6 @@
 # Youssef Elsokkary — engineering portfolio
 
-A statically generated Next.js portfolio featuring four repository-backed case studies: TradePersona, LedgerMatch, AI Operator, and Zentro. Claims and caveats are centralized in app/lib/projects.ts; optional project media is detected from public/projects/ at build time.
+A statically generated Next.js portfolio featuring five repository-backed case studies: ATLAS, TradePersona, LedgerMatch, AI Operator, and Zentro. Claims and caveats are centralized in app/lib/projects.ts; optional project media is detected from public/projects/ at build time.
 
 ## Run
 
@@ -16,5 +16,9 @@ Set `SITE_URL` to the deployed site's absolute HTTPS origin before building so s
 See docs/media-guide.md for exact capture scripts and filenames. Drop an image or demo.mp4 into the configured project directory, then rebuild/redeploy. Missing optional files are omitted; architecture or benchmark visuals fill the hero when no screenshot exists.
 
 ## Evidence boundaries
+
+ATLAS is featured first with four actual application screenshots and a recorded walkthrough. Detection/tracking scores cover three predeclared UA-DETRAC test sequences, forecasting uses chronological METR-LA holdout, and CPU throughput includes production processing and persistence. Its public demo uses precomputed real CV outputs. The negative held-out RESCO signal result remains explicit; the separate synthetic improvement is not presented as field validation.
+
+Dependency audit: production dependencies have no reported advisories at publication. The existing development-only Next.js ESLint dependency chain includes `braces` GHSA-vfj7-8cjw-p6xm, for which no patched release exists at verification. It processes repository lint patterns and is not shipped in the portfolio runtime. The suggested major downgrade was not applied.
 
 TradePersona and LedgerMatch predictive results use held-out synthetic data. AI Operator reports a single frozen live-model coding run separately from deterministic safety tests. Zentro is a locally demonstrated prototype with no verified published outcome benchmark or public deployment.

@@ -7,6 +7,7 @@ export type Project = {
   system: string;
   accent: string;
   github: string;
+  live?: string;
   docs: { label: string; url: string }[];
   scope: string;
   stack: string[];
@@ -21,6 +22,41 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "atlas",
+    name: "ATLAS",
+    category: "Traffic intelligence · Real-data evaluation",
+    intro: "A computer-vision traffic digital twin with synchronized trajectories, analytics, forecasting, and adaptive signal-control experiments.",
+    problem: "Traffic footage is difficult to inspect as structured evidence. Engineers need persistent tracks, synchronized replay, meaningful baselines, and clear limits before drawing conclusions about traffic control or safety.",
+    system: "Next.js and Three.js synchronize a recorded traffic sequence with production YOLO/ByteTrack trajectories. A Python/FastAPI process pool runs CV, analytics, and SQLite persistence locally. The public site replays legitimate precomputed outputs and measured UA-DETRAC, METR-LA, and RESCO benchmark artifacts without requiring local infrastructure.",
+    accent: "green",
+    github: "https://github.com/youssef061204/ATLAS",
+    live: "https://atlas-mu-murex.vercel.app",
+    docs: [
+      {label:"Technical report",url:"https://github.com/youssef061204/ATLAS/blob/main/docs/technical-report.md"},
+      {label:"Benchmark methodology",url:"https://github.com/youssef061204/ATLAS/blob/main/docs/real-world-evaluation.md"},
+    ],
+    scope: "Real CV scores cover three complete predeclared UA-DETRAC test sequences, not the full challenge. Forecasting measures highway speed. Public replay is precomputed; control remains simulation and real safety accuracy is unmeasured.",
+    stack: ["Python","PyTorch","OpenCV","YOLO","ByteTrack","FastAPI","Next.js","TypeScript","Three.js","scikit-learn","SUMO","SQLite","Docker"],
+    metrics: [
+      {value:"0.898",label:"UA-DETRAC mAP@50",detail:"4,260 real annotated frames; merged vehicle class; untouched pretrained baseline"},
+      {value:"0.793",label:"UA-DETRAC IDF1",detail:"Production ByteTrack; official TrackEval; three complete selected test sequences"},
+      {value:"29.4 FPS",label:"complete CPU pipeline",detail:"Intel i7-14700HX; includes inference, analytics, and persistence on real traffic frames"},
+      {value:"2.490 mph",label:"METR-LA 5-minute MAE",detail:"Versus persistence 2.813 mph; chronological holdout across all 207 sensors"},
+    ],
+    decisions: [
+      {title:"Recognized benchmarks, untouched baselines",body:"Evaluated pretrained detection with COCOeval and the same persistent tracker used by the application with official HOTA/CLEAR/Identity metrics. Pinned source revisions, ignored-region rules, and per-camera artifacts make the limited test scope explicit."},
+      {title:"Preserve negative control results",body:"Four controllers share identical held-out RESCO Cologne demand across three seeds each. ATLAS timing search measured 66.45 s mean delay versus fixed 57.45 s and max-pressure 37.99 s; the 15.7% regression remains published. The separate 37.5% synthetic improvement is not relabeled as a real-world benefit."},
+      {title:"Public replay without pretending to host inference",body:"The Vercel deployment serves real previously processed trajectories, an attributed annotated video, forecasts, and cached simulation playback. Uploads and configuration changes remain in the local worker architecture. Missing metric calibration gates physical safety screens rather than inventing TTC/PET results."},
+    ],
+    flow:["Traffic footage","YOLO + persistent tracking","Trajectories + analytics","Synchronized 3D replay","Forecast + evaluate control"],
+    media:{hero:"digital-twin.webp",video:"demo.mp4",gallery:[
+      {file:"digital-twin.webp",caption:"Actual traffic detections and trajectories synchronize with the interactive image-plane digital twin. The public experience is labeled precomputed real CV replay.",alt:"ATLAS real traffic video and synchronized digital twin"},
+      {file:"analytics.webp",caption:"Observed track composition and motion populate analytical charts; unsurveyed physical quantities are explicitly limited.",alt:"ATLAS traffic analytics from actual processed footage"},
+      {file:"optimization.webp",caption:"The controlled signal laboratory replays identical seeded arrivals across fixed, adaptive, and constrained-search policies. This visual is simulation, not field footage.",alt:"ATLAS controlled signal policy comparison"},
+      {file:"benchmarks.webp",caption:"Measured detection, tracking, count-error, forecast, and system results come from saved benchmark artifacts with dataset provenance.",alt:"ATLAS real-world benchmark dashboard"},
+    ]},
+  },
   {
     slug: "tradepersona",
     name: "TradePersona",
