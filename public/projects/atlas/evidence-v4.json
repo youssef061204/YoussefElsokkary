@@ -1,0 +1,22 @@
+{
+  "metric": {
+    "value": "18.94%",
+    "label": "Seattle count MAE vs persistence",
+    "detail": "13.161 vs 16.236 vehicles per 15-minute bin; 4,498 chronological test examples; validation-selected temporal MLP; source counts, not physical queue truth"
+  },
+  "sources": {
+    "artifacts/cities/v4/city-forecast.json": {
+      "sha256": "4c317b61ca53a4567c7bb950840f4134e44c728402da43f0f123b93acd848f35",
+      "url": "https://github.com/youssef061204/ATLAS/blob/main/artifacts/cities/v4/city-forecast.json"
+    },
+    "artifacts/cities/v4/controller-profile.json": {
+      "sha256": "7fe1a320d1cf17ad1fed4842879777f493259522cbcd731270f63ae1b3534ef5",
+      "url": "https://github.com/youssef061204/ATLAS/blob/main/artifacts/cities/v4/controller-profile.json"
+    },
+    "artifacts/cities/v4/controller-results.json": {
+      "sha256": "61af812efb291662e17f6ba9e62df7f2d3d80971e5559573427a5a9342b5a3f9",
+      "url": "https://github.com/youssef061204/ATLAS/blob/main/artifacts/cities/v4/controller-results.json"
+    }
+  },
+  "scope": "One city card metric derived from actual validation-selected chronological results; Toronto/London regressions retained in project details and linked complete report."
+}
