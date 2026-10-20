@@ -23,56 +23,200 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "atlas",
-    name: "ATLAS",
-    category: "Traffic intelligence · Graph ML · Real-data evaluation",
-    intro: "AI traffic intelligence turning continuous video into tracked trajectories, synchronized SUMO reconstruction, forecasting, and independently measured simulation errors.",
-    problem: "Traffic footage is difficult to inspect as structured evidence. Engineers need persistent tracks, synchronized replay, meaningful baselines, and clear limits before drawing conclusions about traffic control or safety.",
-    system: "ATLAS processes an entire 18:42 NGSIM Lankershim recording through production YOLO/ByteTrack, derives vehicle boundary crossings and runs an actual native SUMO reconstruction. One shared clock synchronizes real video, predicted IDs, simulator vehicles and independent observed-versus-simulated error charts. Four complete CityFlowV2 videos test cross-camera transfer. Earlier five-city count studies, graph forecasting and 2,550 matched controller episodes remain inspectable. Next.js serves genuine precomputed results publicly; expensive Python CV and SUMO stay in the native backend.",
-    accent: "green",
-    github: "https://github.com/youssef061204/ATLAS",
-    live: "https://atlas-mu-murex.vercel.app",
-    docs: [
-      {label:"Continuous-video experiment and errors",url:"https://github.com/youssef061204/ATLAS/blob/main/docs/reality-v6-results.md"},
-      {label:"Video versus SUMO",url:"https://atlas-mu-murex.vercel.app/reality"},
-      {label:"FHWA video attribution and license",url:"https://atlas-mu-murex.vercel.app/demo/reality/v6/source-license.txt"},
-      {label:"Connected architecture",url:"https://github.com/youssef061204/ATLAS/blob/main/docs/atlas-4-architecture.md"},
-      {label:"Verified engineering metrics",url:"https://github.com/youssef061204/ATLAS/blob/main/docs/VERIFIED_ENGINEERING_METRICS.md"},
-      {label:"Signal-control results",url:"https://github.com/youssef061204/ATLAS/blob/main/docs/signal-control-results.md"},
-      {label:"Five-city measured results",url:"https://github.com/youssef061204/ATLAS/blob/main/docs/atlas-4-results.md"},
-      {label:"ATLAS 5 results and limitations",url:"https://github.com/youssef061204/ATLAS/blob/main/docs/atlas-5-results.md"},
-      {label:"Twin validation",url:"https://atlas-mu-murex.vercel.app/calibration?city=seattle"},
-      {label:"Robustness comparison",url:"https://atlas-mu-murex.vercel.app/studio?city=seattle&cohort=atlas-5&case=high"},
+    "slug": "atlas",
+    "name": "ATLAS",
+    "category": "Traffic digital twin / Computer vision / Measured validation",
+    "intro": "AI traffic intelligence transforming real video into tracked trajectories, synchronized 3D SUMO reconstruction, analytics, forecasting, and independently measured errors.",
+    "problem": "Traffic footage is difficult to inspect as structured evidence. Engineers need persistent tracks, synchronized replay, meaningful baselines, and clear limits before drawing conclusions about traffic control or safety.",
+    "system": "ATLAS processes 49,979 consecutive frames across 13 complete NGSIM and CityFlow videos. A geographically registered Three.js scene pairs actual traffic footage with native free-running SUMO on one clock, with selectable vehicles, camera presets, frame controls and explicit inferred observations. Frozen independent-site and cross-camera tests expose generalization limits. Bounded native workers also process real HLS and daytime MJPEG streams. Next.js publishes genuine precomputed results; Python CV, model inference and SUMO retain their real native architecture.",
+    "accent": "green",
+    "github": "https://github.com/youssef061204/ATLAS",
+    "live": "https://atlas-mu-murex.vercel.app",
+    "docs": [
+      {
+        "label": "ATLAS 7 results, architecture and limitations",
+        "url": "https://github.com/youssef061204/ATLAS/blob/main/docs/reality-v7-results.md"
+      },
+      {
+        "label": "Presentation provenance and media licenses",
+        "url": "https://github.com/youssef061204/ATLAS/blob/main/artifacts/portfolio/v7/source-license.txt"
+      },
+      {
+        "label": "Archived ATLAS 6 experiment and errors",
+        "url": "https://github.com/youssef061204/ATLAS/blob/main/docs/reality-v6-results.md"
+      },
+      {
+        "label": "Video versus SUMO",
+        "url": "https://atlas-mu-murex.vercel.app/reality"
+      },
+      {
+        "label": "FHWA video attribution and license",
+        "url": "https://atlas-mu-murex.vercel.app/demo/reality/v6/source-license.txt"
+      },
+      {
+        "label": "Connected architecture",
+        "url": "https://github.com/youssef061204/ATLAS/blob/main/docs/atlas-4-architecture.md"
+      },
+      {
+        "label": "Verified engineering metrics",
+        "url": "https://github.com/youssef061204/ATLAS/blob/main/docs/VERIFIED_ENGINEERING_METRICS.md"
+      },
+      {
+        "label": "Signal-control results",
+        "url": "https://github.com/youssef061204/ATLAS/blob/main/docs/signal-control-results.md"
+      },
+      {
+        "label": "Five-city measured results",
+        "url": "https://github.com/youssef061204/ATLAS/blob/main/docs/atlas-4-results.md"
+      },
+      {
+        "label": "ATLAS 5 results and limitations",
+        "url": "https://github.com/youssef061204/ATLAS/blob/main/docs/atlas-5-results.md"
+      },
+      {
+        "label": "Twin validation",
+        "url": "https://atlas-mu-murex.vercel.app/calibration?city=seattle"
+      },
+      {
+        "label": "Robustness comparison",
+        "url": "https://atlas-mu-murex.vercel.app/studio?city=seattle&cohort=atlas-5&case=high"
+      }
     ],
-    scope: "The NGSIM reconstruction fails physical fidelity: 5.603-vehicle count MAE on validation. Its internally truncated second source supports only 471/720 planned holdout seconds. CityFlow association regresses from 0.260 to 0.220 annotation-scoped IDF1 and is not promoted. A native Caltrans HLS trial verifies transport but produces no nighttime tracks; live accuracy is unvalidated. Zero accepted physical twins or measured field savings. Public playback is historical video with precomputed processing. Historical benchmarks retain their separate scopes.",
-    stack: ["Python","PyTorch","OpenCV","YOLO","ByteTrack","FastAPI","Next.js","TypeScript","Three.js","scikit-learn","SUMO","SQLite","Docker"],
-    metrics: [
-      {value:"0.898",label:"UA-DETRAC mAP@50",detail:"4,260 real annotated frames; merged vehicle class; untouched pretrained baseline"},
-      {value:"0.793",label:"UA-DETRAC IDF1",detail:"Production ByteTrack; three complete sequences; official TrackEval; 4,260 annotated frames"},
-      {value:"2.344 mph",label:"METR-LA graph MAE",detail:"Five-minute directional GNN forecast across 207 highway sensors; one seed and historical chronological holdout, separate from city traffic"},
-      {value:"11,220",label:"consecutive video frames",detail:"One complete 18:42 NGSIM recording processed at every source frame; actual CV-driven SUMO and independent error evaluation, not an accepted physical twin"},
+    "scope": "The same known Lankershim validation cohort improves from 0.6852 to 0.7259 raw point IDF1; these are 1 Hz / 4 m point metrics, not bounding-box benchmark scores. Peachtree held-out point IDF1 is 0.4901. Native trajectory MAE improves 16.71 to 13.64 m, but only 12.7% of reference states are within 4 m, counts regress, and physical acceptance fails. CityFlow held-out gains are small. Live trials have no accuracy ground truth. Zero accepted physical twins or observed field savings; public playback is historical video with precomputed real processing.",
+    "stack": [
+      "Python",
+      "PyTorch",
+      "OpenVINO",
+      "OpenCV",
+      "YOLO",
+      "ByteTrack",
+      "FastAPI",
+      "Next.js",
+      "TypeScript",
+      "Three.js",
+      "scikit-learn",
+      "SUMO",
+      "SQLite",
+      "Docker"
     ],
-    decisions: [
-      {title:"Process continuous video, expose reconstruction errors",body:"A complete raw NGSIM video runs through YOLOv8n-VisDrone and ByteTrack, with development-only physical registration and CV-derived SUMO arrivals. Point-trajectory IDF1 is 0.685 at a 4 m gate; only 60.7% of independent vehicle observations match. Native SUMO visible-count MAE is 5.603 vehicles on validation. Interior reference positions never force simulated vehicles; errors remain visible instead of presenting trajectory animation as physical validation."},
-      {title:"Reject a damaged source and a failed association",body:"The second official AVI passes archive CRC but decodes only 6,538 of 10,480 declared frames. The pipeline rejects truncated sources; a separately labelled lossless prefix supports 471/720 planned holdout seconds. Four complete CityFlowV2 videos add 8,109 processed frames, but the same-detections association ablation reduces IDF1 from 0.260 to 0.220. Neither incomplete coverage nor negative transfer is hidden or promoted."},
-      {title:"Make validation a visible product state",body:"Five cities expose observed count series, estimated demand, chronology, coverage and explicit unavailable speed/travel-time/queue truth. Official follow-up resolves 23 Seattle street segments and acquires 240 Whitehall hourly surveys; historical lane mapping remains unverified. Demand reconstruction is not called simulator-state validation. The new Whitehall study fails, and no validated-twin count is invented."},
-      {title:"Freeze the selector, preserve the failed promotion",body:"An occupancy-based portfolio with hysteresis, dwell time and deterministic phase-safety gating was frozen before 2,100 final paired SUMO runs across five cities, six scenarios and seven controllers. Delay falls 13.95% vs fixed and 7.36% vs max-pressure overall, but is 2.33% worse than cached MPC and regresses 28.75% in one Toronto episode. The worst-case guard fails; production remains unchanged. All 2,550 development/validation/final runs have zero modeled signal-safety violations."},
-      {title:"Test full processing costs and source-only transfer",body:"Six counterbalanced complete-pipeline runs on one full 1,130-frame sequence measure 18.33 ByteTrack and 15.06 BoT-SORT FPS, including cold startup, inference, analytics and persistence. These do not replace the historical 29.4 FPS workload. Causal forecasting fixes Calgary transfer in the reused historical cohort, while Austin zero-shot worsens; no target labels or target normalization statistics select zero-shot parameters."},
-      {title:"Retain the ATLAS 4 transfer failures",body:"The retained ATLAS 4 study uses five official count archives, whole-date chronological splits, persistence and calendar baselines, boosting, temporal MLPs and actual geographic messages. Its validation-selected models improve Seattle, Austin and Calgary; Toronto and London regress. Every four-city transfer rotation freezes preprocessing before fifth-city evaluation. Marginal uncertainty coverage is measured; proximity graphs are not surveyed traffic-flow graphs. ATLAS 5 reports its newer historical regression study separately."},
-      {title:"Faster planning without invented traffic gains",body:"Cached vectorized MPC reproduces 1,000/1,000 original actions while observed planner p95 falls from 2.084 to 0.585 ms, a 71.95% reduction on synthetic decision snapshots. The 1,800-run held-out city study preserves original traffic outcomes and high-demand regressions against max-pressure. Experimental cooperative Q control improves three cities but regresses two, and remains unpromoted. No field savings or universal superiority is inferred."},
-      {title:"Measured graph learning, separate domains",body:"A 3,617-parameter directional graph neural model learns local, upstream and downstream messages across 207 highway sensors. Five-minute MAE falls from 2.490 to 2.344 mph and fifteen-minute MAE from 3.214 to 2.975 mph under the original chronology and target masks. A matched temporal MLP isolates the graph benefit; epochs are selected on validation. These highway predictions are not relabeled as camera-derived city queues."},
-      {title:"Recognized benchmarks, untouched baselines",body:"Evaluated pretrained detection with COCOeval and the production tracker with official HOTA/CLEAR/Identity metrics. METR-LA five-minute MAE is 2.490 mph versus persistence 2.813 across all 207 sensors under chronological holdout. Pinned source revisions and per-camera artifacts make the limited test scope explicit."},
-      {title:"Replace the failed controller, preserve the evidence",body:"The original cyclic controller measured 66.45 s versus fixed 57.45 s and max-pressure 37.99 s; that failure remains published. Validation-selected 30-second MPC now measures 20.53 s across 10 new paired Cologne1 seeds: 65.7% lower delay than fixed and 45.3% lower than unchanged max-pressure, winning all 10 seeds. Untuned Ingolstadt1 transfer failed (40.08 s versus fixed 37.95 and max-pressure 28.16); forecasting's separate ablation benefit was small and uncertain. These are simulated interventions, not field improvements."},
-      {title:"Public replay without pretending to host inference",body:"The Vercel deployment serves real previously processed trajectories, an attributed annotated video, forecasts, and cached simulation playback. Uploads and configuration changes remain in the local worker architecture. Missing metric calibration gates physical safety screens rather than inventing TTC/PET results."},
+    "metrics": [
+      {
+        "value": "0.898",
+        "label": "UA-DETRAC mAP@50",
+        "detail": "4,260 real annotated frames; merged vehicle class; untouched pretrained baseline"
+      },
+      {
+        "value": "0.793",
+        "label": "UA-DETRAC IDF1",
+        "detail": "Production ByteTrack; three complete sequences; official TrackEval; 4,260 annotated frames"
+      },
+      {
+        "value": "2.344 mph",
+        "label": "METR-LA graph MAE",
+        "detail": "Five-minute directional GNN forecast across 207 highway sensors; one seed and historical chronological holdout, separate from city traffic"
+      },
+      {
+        "value": "49,979",
+        "label": "consecutive video frames",
+        "detail": "13 complete newly processed NGSIM/CityFlow clips; every frame, frozen evaluations and an interactive geographically grounded 3D replay. Separate live stream trials are not counted here."
+      }
     ],
-    flow:["Complete traffic video","YOLO + persistent tracks","CV boundary arrivals","Native SUMO reconstruction","Independent errors + coverage"],
-    media:{hero:"video-twin-v6.jpg",video:"walkthrough-v6.mp4",gallery:[
-      {file:"video-twin-v6.jpg",caption:"FHWA NGSIM historical video (CC BY-SA 4.0) and actual CV-driven SUMO output share one playback clock. Predicted IDs correspond to simulator boundary arrivals; the physical model remains approximate. Attribution and license are linked above.",alt:"ATLAS continuous NGSIM traffic video and synchronized SUMO reconstruction"},
-      {file:"independent-errors-v6.jpg",caption:"Independent FHWA observations expose missing simulated traffic and queue discrepancies. Failed fidelity and incomplete final holdout coverage remain visible.",alt:"ATLAS observed versus simulated count and stopped queue errors"},
-      {file:"real-cv-v5.jpg",caption:"Retained historical real-video workspace: detections and trajectories synchronize with the Three.js digital twin. This is separate from the newer NGSIM experiment.",alt:"ATLAS historical real-video tracking and Three.js traffic twin"},
-      {file:"robust-control-v6.jpg",caption:"Current interface, retained ATLAS 5 experiment: genuine matched seed 55301 replays max-pressure and the experimental portfolio under Seattle high demand. Failed overall promotion remains visible.",alt:"ATLAS synchronized max-pressure and experimental portfolio SUMO replay"},
-      {file:"benchmarks-v6.jpg",caption:"Current interface, preserved benchmark scope: published chronological METR-LA evaluation and real-data benchmarks retain negative findings.",alt:"ATLAS measured forecasting and benchmark dashboard"},
-    ]},
+    "decisions": [
+      {
+        "title": "Improve perception, keep independent denominators",
+        "body": "Development-selected multiscale aerial detection improves raw point IDF1 from 0.6852 to 0.7259 and reference coverage from 60.7% to 65.8% on the identical known Lankershim cohort. Matched position/speed errors slightly regress. A separate offline short-gap output reaches 0.7406, with 89 inferred scoring observations explicitly marked and hidden by default. It is never called live detection."
+      },
+      {
+        "title": "Make the 3D twin geographically grounded and inspectable",
+        "body": "Actual survey linework, historical georeferenced imagery, curved native lanes, instanced vehicle bodies/wheels/lights, orbit/follow presets and one playback clock connect source video to native simulation. Vehicle inspection exposes missing observations, tracker handoffs and delayed native admission. Building heights and decorative context stay labeled illustrative. Projections outside calibration support withhold physical speed."
+      },
+      {
+        "title": "Diagnose physical errors instead of accepting animation",
+        "body": "Nine development-only behavior settings and native insertion scheduling reduce uncapped trajectory MAE from 16.71 to 13.64 m on known regression data. Safety checks remain active and later reference states never force SUMO vehicles. Count MAE changes 2.79 to 2.86; only 12.7% of all reference states are within 4 m. The unchanged physical acceptance gate fails, so no new controller or field-benefit claim is promoted."
+      },
+      {
+        "title": "Freeze models before new camera and city tests",
+        "body": "A complete 14,961-frame Peachtree run yields 0.4901 point IDF1 and 61.2% reference coverage on a frozen independent-city interval. Vehicle-specific ReID raises CityFlow development IDF1 to 0.5162, but the separate S03 raw-box test improves only 0.1635 to 0.1649; cross-camera filtering regresses. Every cohort, failed temporal tail and annotation-convention adjustment remains separate."
+      },
+      {
+        "title": "Operate genuine continuous video at no added service cost",
+        "body": "A 60-second Caltrans HLS trial decodes 1,500 frames with no stream gaps and visually checked car-ID continuity. A daytime Taiwan MJPEG trial processes 258 changing frames, 142 with vehicle tracks, with five explicit reconnect resets. TLS stays verified; buffers and audit images are deleted. Neither trial has tracking/count ground truth, and the public Vercel site does not pretend to host a persistent CV worker."
+      },
+      {
+        "title": "Make validation a visible product state",
+        "body": "Five cities expose observed count series, estimated demand, chronology, coverage and explicit unavailable speed/travel-time/queue truth. Official follow-up resolves 23 Seattle street segments and acquires 240 Whitehall hourly surveys; historical lane mapping remains unverified. Demand reconstruction is not called simulator-state validation. The new Whitehall study fails, and no validated-twin count is invented."
+      },
+      {
+        "title": "Freeze the selector, preserve the failed promotion",
+        "body": "An occupancy-based portfolio with hysteresis, dwell time and deterministic phase-safety gating was frozen before 2,100 final paired SUMO runs across five cities, six scenarios and seven controllers. Delay falls 13.95% vs fixed and 7.36% vs max-pressure overall, but is 2.33% worse than cached MPC and regresses 28.75% in one Toronto episode. The worst-case guard fails; production remains unchanged. All 2,550 development/validation/final runs have zero modeled signal-safety violations."
+      },
+      {
+        "title": "Test full processing costs and source-only transfer",
+        "body": "Six counterbalanced complete-pipeline runs on one full 1,130-frame sequence measure 18.33 ByteTrack and 15.06 BoT-SORT FPS, including cold startup, inference, analytics and persistence. These do not replace the historical 29.4 FPS workload. Causal forecasting fixes Calgary transfer in the reused historical cohort, while Austin zero-shot worsens; no target labels or target normalization statistics select zero-shot parameters."
+      },
+      {
+        "title": "Retain the ATLAS 4 transfer failures",
+        "body": "The retained ATLAS 4 study uses five official count archives, whole-date chronological splits, persistence and calendar baselines, boosting, temporal MLPs and actual geographic messages. Its validation-selected models improve Seattle, Austin and Calgary; Toronto and London regress. Every four-city transfer rotation freezes preprocessing before fifth-city evaluation. Marginal uncertainty coverage is measured; proximity graphs are not surveyed traffic-flow graphs. ATLAS 5 reports its newer historical regression study separately."
+      },
+      {
+        "title": "Faster planning without invented traffic gains",
+        "body": "Cached vectorized MPC reproduces 1,000/1,000 original actions while observed planner p95 falls from 2.084 to 0.585 ms, a 71.95% reduction on synthetic decision snapshots. The 1,800-run held-out city study preserves original traffic outcomes and high-demand regressions against max-pressure. Experimental cooperative Q control improves three cities but regresses two, and remains unpromoted. No field savings or universal superiority is inferred."
+      },
+      {
+        "title": "Measured graph learning, separate domains",
+        "body": "A 3,617-parameter directional graph neural model learns local, upstream and downstream messages across 207 highway sensors. Five-minute MAE falls from 2.490 to 2.344 mph and fifteen-minute MAE from 3.214 to 2.975 mph under the original chronology and target masks. A matched temporal MLP isolates the graph benefit; epochs are selected on validation. These highway predictions are not relabeled as camera-derived city queues."
+      },
+      {
+        "title": "Recognized benchmarks, untouched baselines",
+        "body": "Evaluated pretrained detection with COCOeval and the production tracker with official HOTA/CLEAR/Identity metrics. METR-LA five-minute MAE is 2.490 mph versus persistence 2.813 across all 207 sensors under chronological holdout. Pinned source revisions and per-camera artifacts make the limited test scope explicit."
+      },
+      {
+        "title": "Replace the failed controller, preserve the evidence",
+        "body": "The original cyclic controller measured 66.45 s versus fixed 57.45 s and max-pressure 37.99 s; that failure remains published. Validation-selected 30-second MPC now measures 20.53 s across 10 new paired Cologne1 seeds: 65.7% lower delay than fixed and 45.3% lower than unchanged max-pressure, winning all 10 seeds. Untuned Ingolstadt1 transfer failed (40.08 s versus fixed 37.95 and max-pressure 28.16); forecasting's separate ablation benefit was small and uncertain. These are simulated interventions, not field improvements."
+      },
+      {
+        "title": "Public replay without pretending to host inference",
+        "body": "The Vercel deployment serves real previously processed trajectories, an attributed annotated video, forecasts, and cached simulation playback. Uploads and configuration changes remain in the local worker architecture. Missing metric calibration gates physical safety screens rather than inventing TTC/PET results."
+      }
+    ],
+    "flow": [
+      "Continuous traffic video",
+      "Multiscale detection / tracking",
+      "Calibrated observed trajectories",
+      "Free-running native SUMO",
+      "Synchronized 3D / measured errors"
+    ],
+    "media": {
+      "hero": "video-twin-v7.jpg",
+      "video": "walkthrough-v7.mp4",
+      "gallery": [
+        {
+          "file": "video-twin-v7.jpg",
+          "caption": "Actual Lankershim traffic video and its geographically registered 3D native SUMO reconstruction share playback time. The public experience is precomputed real processing.",
+          "alt": "ATLAS actual traffic video beside a geographically grounded 3D reconstruction"
+        },
+        {
+          "file": "vehicle-inspector-v7.jpg",
+          "caption": "Selecting an actual vehicle links the video box, 3D camera, source tracker IDs, observation gaps and requested versus sampled native admission times.",
+          "alt": "ATLAS selected tracked vehicle with synchronized 3D follow view and correspondence inspector"
+        },
+        {
+          "file": "real-cv-v7.jpg",
+          "caption": "The original Guadalajara traffic video remains playable with actual cached CV boxes and IDs. Its source is time-lapse, so physical speeds and field arrival rates are withheld.",
+          "alt": "ATLAS original traffic video workspace showing real detection and tracking output"
+        },
+        {
+          "file": "physical-evidence-v7.jpg",
+          "caption": "The experiment inspector reports uncapped native trajectory error and missing reference coverage. Physical validation still fails; initialization is separated from future prediction.",
+          "alt": "ATLAS physical validation report with native prediction errors and failed acceptance"
+        },
+        {
+          "file": "benchmarks-v7.jpg",
+          "caption": "Preserved UA-DETRAC and chronological METR-LA benchmarks keep their original data, hardware and simulation scopes; video-domain experiments are separate.",
+          "alt": "ATLAS benchmark dashboard showing verified real-world evaluation results"
+        }
+      ]
+    }
   },
   {
     slug: "tradepersona",
