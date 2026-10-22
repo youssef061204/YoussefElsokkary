@@ -26,20 +26,28 @@ export const projects: Project[] = [
     "slug": "atlas",
     "name": "ATLAS",
     "category": "Traffic digital twin / Computer vision / Measured validation",
-    "intro": "AI traffic intelligence transforming real video into tracked trajectories, synchronized 3D SUMO reconstruction, analytics, forecasting, and independently measured errors.",
+    "intro": "AI traffic intelligence turning continuous video into tracked trajectories, a synchronized 3D SUMO twin, forecasts, and independently measured physical errors.",
     "problem": "Traffic footage is difficult to inspect as structured evidence. Engineers need persistent tracks, synchronized replay, meaningful baselines, and clear limits before drawing conclusions about traffic control or safety.",
-    "system": "ATLAS processes 49,979 consecutive frames across 13 complete NGSIM and CityFlow videos. A geographically registered Three.js scene pairs actual traffic footage with native free-running SUMO on one clock, with selectable vehicles, camera presets, frame controls and explicit inferred observations. Frozen independent-site and cross-camera tests expose generalization limits. Bounded native workers also process real HLS and daytime MJPEG streams. Next.js publishes genuine precomputed results; Python CV, model inference and SUMO retain their real native architecture.",
+    "system": "ATLAS processes 49,979 consecutive frames across 13 complete NGSIM and CityFlow videos. A geographically registered Three.js scene pairs actual traffic footage with native free-running SUMO on one clock, with selectable vehicles, camera presets, frame controls and explicit inferred observations. A second complete FHWA camera was acquired and decoded for source integrity, separately from those CV totals. Ground-truth audits trace missing native states, source-located turns, signal-report timing and directional junction error. Frozen independent-site and cross-camera tests expose generalization limits. Native workers process real HLS and MJPEG streams; Next.js publishes genuine precomputed results without pretending to host persistent inference.",
     "accent": "green",
     "github": "https://github.com/youssef061204/ATLAS",
     "live": "https://atlas-mu-murex.vercel.app",
     "docs": [
       {
+        "label": "Ground-truth diagnosis in the live demo",
+        "url": "https://atlas-mu-murex.vercel.app/ground-truth"
+      },
+      {
+        "label": "ATLAS 8 methods, controlled ablations and limitations",
+        "url": "https://github.com/youssef061204/ATLAS/blob/main/docs/reality-v8-diagnostics.md"
+      },
+      {
         "label": "ATLAS 7 results, architecture and limitations",
         "url": "https://github.com/youssef061204/ATLAS/blob/main/docs/reality-v7-results.md"
       },
       {
-        "label": "Presentation provenance and media licenses",
-        "url": "https://github.com/youssef061204/ATLAS/blob/main/artifacts/portfolio/v7/source-license.txt"
+        "label": "Current presentation provenance and media licenses",
+        "url": "https://github.com/youssef061204/ATLAS/blob/main/artifacts/portfolio/v8/source-license.txt"
       },
       {
         "label": "Archived ATLAS 6 experiment and errors",
@@ -82,7 +90,7 @@ export const projects: Project[] = [
         "url": "https://atlas-mu-murex.vercel.app/studio?city=seattle&cohort=atlas-5&case=high"
       }
     ],
-    "scope": "The same known Lankershim validation cohort improves from 0.6852 to 0.7259 raw point IDF1; these are 1 Hz / 4 m point metrics, not bounding-box benchmark scores. Peachtree held-out point IDF1 is 0.4901. Native trajectory MAE improves 16.71 to 13.64 m, but only 12.7% of reference states are within 4 m, counts regress, and physical acceptance fails. CityFlow held-out gains are small. Live trials have no accuracy ground truth. Zero accepted physical twins or observed field savings; public playback is historical video with precomputed real processing.",
+    "scope": "The same known Lankershim validation cohort improves from 0.6852 to 0.7259 raw point IDF1; these are 1 Hz / 4 m point metrics, not bounding-box benchmark scores. Peachtree held-out point IDF1 is 0.4901. Native trajectory MAE improves 16.71 to 13.64 m, but only 12.7% of reference states are within 4 m, counts regress, and physical acceptance fails. ATLAS 8 root-cause experiments use already exposed development data: an oracle state after Main Street reduces northbound error from 33.58 to 6.56 m on the same 374 states, but bypasses the unverified junction and is not deployable prediction. Extending the approach alone regresses. CityFlow held-out gains are small. Live trials have no accuracy ground truth. Zero accepted physical twins or observed field savings; public playback is historical video with precomputed real processing.",
     "stack": [
       "Python",
       "PyTorch",
@@ -122,6 +130,10 @@ export const projects: Project[] = [
       }
     ],
     "decisions": [
+      {
+        "title": "Localize the physical failure with observed video",
+        "body": "A 2,670-state lifecycle audit preserves every missing or misplaced reference vehicle. FHWA GIS locates just 10 of 63 initially mapped turns near the modeled Main Street junction; the others cannot be routed there. The controller report timestamps completed cycles but cannot verify 2005 lamp colors. In a same-374-state northbound oracle ablation, starting vehicles after Main Street cuts conditional position MAE from 33.58 to 6.56 m; southbound scores stay identical. Extending the approach from 15.49 to 95.49 m instead worsens overall position error. These are source-linked development diagnostics, not a validated or deployable twin."
+      },
       {
         "title": "Improve perception, keep independent denominators",
         "body": "Development-selected multiscale aerial detection improves raw point IDF1 from 0.6852 to 0.7259 and reference coverage from 60.7% to 65.8% on the identical known Lankershim cohort. Matched position/speed errors slightly regress. A separate offline short-gap output reaches 0.7406, with 89 inferred scoring observations explicitly marked and hidden by default. It is never called live detection."
@@ -188,7 +200,7 @@ export const projects: Project[] = [
     ],
     "media": {
       "hero": "video-twin-v7.jpg",
-      "video": "walkthrough-v7.mp4",
+      "video": "walkthrough-v8.mp4",
       "gallery": [
         {
           "file": "video-twin-v7.jpg",
@@ -206,9 +218,9 @@ export const projects: Project[] = [
           "alt": "ATLAS original traffic video workspace showing real detection and tracking output"
         },
         {
-          "file": "physical-evidence-v7.jpg",
-          "caption": "The experiment inspector reports uncapped native trajectory error and missing reference coverage. Physical validation still fails; initialization is separated from future prediction.",
-          "alt": "ATLAS physical validation report with native prediction errors and failed acceptance"
+          "file": "ground-truth-v8.jpg",
+          "caption": "The real-video Ground Truth audit isolates a junction failure with a reference-assisted, nondeployable test. Original FHWA footage and survey geometry sit beside the measured errors; physical validation still fails.",
+          "alt": "ATLAS Ground Truth diagnosis showing source video, surveyed geometry, and controlled SUMO error measurements"
         },
         {
           "file": "benchmarks-v7.jpg",

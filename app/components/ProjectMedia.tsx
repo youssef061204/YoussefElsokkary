@@ -67,7 +67,7 @@ export function ProjectGallery({ project }: { project: Project }) {
             <source src={`/projects/${project.slug}/${project.media.video}`} type="video/mp4" />
             Your browser does not support video. <a href={`/projects/${project.slug}/${project.media.video}`}>Download the demonstration.</a>
           </video>
-          <figcaption>{project.slug === "atlas" ? "Actual precomputed traffic CV replay, measured real-data benchmarks, and explicitly controlled signal simulation." : project.slug === "zentro" ? "Local prototype walkthrough with demo task data." : project.slug === "ai-operator" ? "Local coding-agent workflow." : "Workflow using the project's included synthetic sample data."}</figcaption>
+          <figcaption>{project.slug === "atlas" ? "Historical traffic video with real precomputed CV/native SUMO replay, a reference-assisted development diagnosis, verified benchmarks, and a separately scoped signal simulation." : project.slug === "zentro" ? "Local prototype walkthrough with demo task data." : project.slug === "ai-operator" ? "Local coding-agent workflow." : "Workflow using the project's included synthetic sample data."}</figcaption>
         </figure>
       )}
       <div className="gallery-grid">
