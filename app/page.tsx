@@ -23,7 +23,7 @@ export default function Home() {
         </section>
 
         <section id="work" className="work-section" aria-labelledby="work-title">
-          <div className="wrap"><div className="section-intro"><span className="eyebrow">01 / Projects</span><h2 id="work-title">Selected <em>work.</em></h2><p>Traffic intelligence, trading-history analysis, payment reconciliation, and agent systems. Each case study covers the implementation, evaluation, and limits.</p></div>
+          <div className="wrap"><div className="section-intro"><span className="eyebrow">01 / Projects</span><h2 id="work-title">Selected <em>work.</em></h2><p>Traffic intelligence, assistive Android navigation, trading-history analysis, and payment reconciliation. Each case study covers the implementation, evaluation, and limits.</p></div>
             <div className="project-list">
               {projects.map((project, index) => (
                 <article className={"project-row project-row--" + project.accent} key={project.slug}>

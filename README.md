@@ -1,6 +1,6 @@
 # Youssef Elsokkary — engineering portfolio
 
-A statically generated Next.js portfolio featuring five repository-backed case studies: ATLAS, TradePersona, LedgerMatch, AI Operator, and Zentro. Claims and caveats are centralized in app/lib/projects.ts; optional project media is detected from public/projects/ at build time.
+A statically generated Next.js portfolio featuring six repository-backed case studies: ATLAS, SIGHT, TradePersona, LedgerMatch, AI Operator, and Zentro. Claims and caveats are centralized in app/lib/projects.ts; optional project media is detected from public/projects/ at build time.
 
 ## Run
 
@@ -16,6 +16,8 @@ Set `SITE_URL` to the deployed site's absolute HTTPS origin before building so s
 See docs/media-guide.md for exact capture scripts and filenames. Drop an image or demo.mp4 into the configured project directory, then rebuild/redeploy. Missing optional files are omitted; architecture or benchmark visuals fill the hero when no screenshot exists.
 
 ## Evidence boundaries
+
+SIGHT is featured second with genuine native Android emulator captures in a portrait-preserving layout. Its case study explains spoken destination choices, real pedestrian routing, local visual subtasks and offline recognition, while separating provider samples, held-out road/object accuracy, native checks and unverified physical-device or participant outcomes. The road-presence model exceeded its held-out false-event budget, so automatic road narration stays disabled and its diagnostics require explicit opt-in. It does not claim safe crossings, clear walking paths or certified mobility-aid readiness. See [SIGHT media and verification notes](docs/sight-project.md).
 
 ATLAS is featured first with four actual application screenshots and a recorded walkthrough. Detection/tracking scores cover three predeclared UA-DETRAC test sequences, forecasting uses chronological METR-LA holdout, and CPU throughput includes production processing and persistence. Its public demo uses precomputed real CV outputs. The negative held-out RESCO signal result remains explicit; the separate synthetic improvement is not presented as field validation.
 

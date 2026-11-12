@@ -15,9 +15,11 @@ export type Project = {
   decisions: { title: string; body: string }[];
   flow: string[];
   media: {
+    layout?: "phone";
     hero?: string;
     video: string;
-    gallery: { file: string; caption: string; alt: string }[];
+    videoCaption?: string;
+    gallery: { file: string; caption: string; alt: string; width?: number; height?: number }[];
   };
 };
 
@@ -229,6 +231,53 @@ export const projects: Project[] = [
         }
       ]
     }
+  },
+  {
+    slug: "sight",
+    name: "SIGHT",
+    category: "Assistive navigation / On-device vision / Android",
+    intro: "An Android assistive navigation companion with spoken destination choices, walking directions, local camera observations, and offline voice commands.",
+    problem: "A walking instruction and a camera description are useful only when they preserve context, communicate uncertainty, and arrive at the right time. Blind and visually impaired users also need clear recovery when location, vision, or speech is unavailable.",
+    system: "Kotlin and Jetpack Compose coordinate Photon place search, FOSSGIS OSRM walking routes, spoken numbered destination choices, location-based turn cues, progress tracking and rerouting. Optional Valhalla pedestrian routing retains mapped mobility features without certifying present accessibility. CameraX, MediaPipe and ML Kit feed a temporal evidence model while Find and Read preserve route context. Android on-device recognition has a bundled Vosk fallback; a deterministic safety layer checks speech before output. A purpose-built road-segmentation network is available for diagnostics, with automatic road narration disabled after its held-out false-event gate failed.",
+    accent: "green",
+    github: "https://github.com/youssef061204/SIGHT",
+    docs: [
+      { label: "Download Android preview APK", url: "https://github.com/youssef061204/SIGHT/releases/tag/public-preview" },
+      { label: "Build and installation instructions", url: "https://github.com/youssef061204/SIGHT#build-and-install" },
+      { label: "Product engineering report and limitations", url: "https://github.com/youssef061204/SIGHT/blob/main/docs/product-engineering-report.md" },
+      { label: "Integrated Android validation", url: "https://github.com/youssef061204/SIGHT/blob/main/evaluation/results/product-validation/summary.json" },
+      { label: "Pedestrian model evaluation and failed release gate", url: "https://github.com/youssef061204/SIGHT/blob/main/evaluation/results/pedestrian-balanced/report.md" },
+      { label: "Navigation providers and evaluation", url: "https://github.com/youssef061204/SIGHT/blob/main/evaluation/results/product-navigation/README.md" },
+    ],
+    scope: "Assistive software under evaluation, not a certified mobility aid. Public-provider samples, held-out photographs, constructed location traces, Android emulators and Meta mock execution answer different questions. Automatic road narration remains off because its false-event limit failed; sidewalks, crosswalks, pedestrian-signal states and stairs are not validated visual capabilities. Physical-phone performance, noisy microphone recognition, glasses hardware, battery life, human TalkBack usability and independent outdoor navigation remain unverified. No route or image prediction establishes crossing safety or a clear walking path.",
+    stack: ["Kotlin", "Jetpack Compose", "CameraX", "MediaPipe", "ML Kit", "LiteRT", "Vosk", "On-device ML", "Geospatial Routing", "Android"],
+    metrics: [
+      { value: "6 / 6", label: "public place searches", detail: "Six fixed public-landmark queries returned results and three walking routes returned HTTP 200 / provider Ok across Toronto, Ottawa and Kingston. This small service sample is not a field-navigation reliability estimate." },
+      { value: "0.645", label: "held-out road pixel IoU", detail: "40 independently held-out photos: pixel precision 76.1%, recall 80.9%. Road-presence detection produced 17 TP / 1 FP / 3 FN / 19 TN; 0.025 false events/image exceeds the frozen 0.02 budget, so automatic road narration is disabled." },
+      { value: "0.604", label: "held-out object AP50", detail: "Unchanged selective Lite2 detector on 80 licensed COCO photographs; FAST baseline: 0.501. Operating precision is 94.9% and recall 33.9%; this is separate from road segmentation and field object-finding success." },
+    ],
+    decisions: [
+      { title: "Connect destination choice to real walking guidance", body: "Explicit provider consent, spoken numbered place choices and Android location permission lead to real route geometry. Guidance accounts for stale or inaccurate GPS, repeated off-route evidence, recalculation and explicit arrival confirmation. Optional Valhalla mapped mobility details remain separate from physical accessibility; a failed request never silently becomes a different route provider." },
+      { title: "Keep the route while finding or reading", body: "Visual tasks share the runtime without discarding navigation context. Supported objects use fresh temporal confirmation. Entrance and elevator requests can instead search captured sign text, with an explicit disclosure that recognized words do not verify a physical entrance, elevator or its location. Unvalidated attributes and object classes are not invented." },
+      { title: "Retain the failed road-speech gate", body: "A purpose-built Intel road/curb/marking network was checked against its reference graph, repaired without changing trained weights and evaluated on a new 100-photo corpus with frozen splits. The final 40-photo presence test reached 94.4% precision and 85.0% recall but exceeded the false-event budget. Automatic surface speech stays disabled; opt-in diagnostics and separate traffic-class observations do not become crossing clearance." },
+      { title: "Make commands local and bounded", body: "The app prefers Android's on-device recognition and provides a checksum-verified bundled English Vosk fallback for Android 8 and newer. One requested utterance, cancellation generations, explicit microphone status and hardware-key controls support operation without a wake-word listener. Microphone audio is not saved or uploaded; real-user accents, noise and physical microphone behavior require separate evaluation." },
+      { title: "Prioritize fresh guidance over unrelated narration", body: "A bounded queue prioritizes environmental observations and navigation, suppresses unrelated descriptions during a route, and rechecks evidence at dispatch and speech start. Microphone use pauses expensive camera inference; interruptions cannot replay expired directions. Image-relative coordinates remain distinct from body orientation and physical clearance." },
+      { title: "Keep verification levels distinct", body: "Real provider responses, production-engine replays over constructed GPS traces, independent model annotations and native Android checks retain separate evidence. The integrated runtime passed 15 native checks on each of Android 11 and 15, eight official Meta Mock Device Kit checks, two Google offline speech-synthesis checks, 146 JVM tests and 14 Python checks. These automated runs and simulated camera input do not establish physical mobility performance or human TalkBack usability." },
+    ],
+    flow: ["Spoken destination choice", "Pedestrian route + location", "Local vision / Find / Read", "Fresh evidence + safety checks", "Prioritized spoken guidance"],
+    media: {
+      layout: "phone",
+      hero: "assist-route.png",
+      video: "demo.mp4",
+      videoCaption: "Silent walkthrough of the actual Android 15 app with live Photon destination search and OSRM walking routes. Commands were typed, GPS was injected at a fixed Toronto coordinate, and the camera used Android's virtual scene. This demonstrates the implemented runtime; microphone recognition, outdoor walking and physical glasses use require separate evidence.",
+      gallery: [
+        { file: "assist-route.png", caption: "Live OSRM walking guidance in the native Android 15 app. This emulator run used an injected Toronto GPS coordinate; mapped turn distance does not establish precise sidewalk position or crossing safety.", alt: "SIGHT Assist screen with location active, route guiding and a mapped left turn in approximately 50 metres", width: 540, height: 1200 },
+        { file: "destination-choices.png", caption: "Numbered CN Tower destination choices returned by live Photon search. This walkthrough used typed commands; local microphone recognition is evaluated separately.", alt: "SIGHT lists numbered CN Tower search matches and explains how to choose an option", width: 540, height: 1200 },
+        { file: "entrance-text-search.png", caption: "Entrance requests retain the route and disclose the OCR sign-text fallback. The expired GPS fix is shown explicitly; recognized words do not verify a physical entrance or its location.", alt: "SIGHT explains its sign-text search fallback while retaining the route and reporting an expired GPS fix", width: 540, height: 1200 },
+        { file: "developer-camera.png", caption: "Native camera diagnostics from Android's virtual scene, including actual counters for this screenshot session. These values are not a controlled performance benchmark or physical-phone measurement.", alt: "SIGHT Developer screen showing the virtual camera scene, inference counters and reduced-capability status", width: 540, height: 1200 },
+        { file: "large-text-settings.png", caption: "Settings captured at Android font scale 2.0 with a wrapping navigation bar. This visual and automated coverage does not establish human TalkBack usability.", alt: "SIGHT Settings at double text size with speech controls and a two-row navigation bar", width: 540, height: 1200 },
+      ],
+    },
   },
   {
     slug: "tradepersona",

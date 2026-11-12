@@ -44,7 +44,7 @@ em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
 .section-intro p { color: var(--muted); max-width: 47ch; font-size: 1.08rem; line-height: 1.65; margin: 0 0 4px auto; }
 .project-list { border-top: 1px solid var(--line); }
 .project-row, .case--green { --project-accent: #a7c1ad; }
-.project-row { display: grid; grid-template-columns: 45% 55%; min-height: 550px; border-bottom: 1px solid var(--line); padding: 30px 0; gap: 28px; }
+.project-row { display: grid; grid-template-columns: minmax(0,45fr) minmax(0,55fr); min-height: 550px; border-bottom: 1px solid var(--line); padding: 30px 0; gap: 28px; }
 .project-row--blue, .case--blue { --project-accent: #a2c5d7; }
 .project-row--orange, .case--orange { --project-accent: #d4ae95; }
 .project-row--violet, .case--violet { --project-accent: #bcaed2; }
@@ -184,7 +184,7 @@ em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
   .hero__content { grid-template-columns: 1fr; gap: 44px; }
   .hero__aside { display: flex; justify-content: space-between; align-items: end; gap: 35px; }
   .hero__aside p { margin: 0; }
-  .project-row { grid-template-columns: 44% 56%; }
+  .project-row { grid-template-columns: minmax(0,44fr) minmax(0,56fr); }
   .project-row h3 { margin-top: 40px; }
 }
 @media (max-width: 800px) {
@@ -262,3 +262,24 @@ em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
 .project-mini-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 20px; max-width: 440px; }
 .project-mini-metrics strong { display: block; color: var(--project-accent); font-size: 1.05rem; }
 .project-mini-metrics span { display: block; color: var(--muted); font-size: .65rem; line-height: 1.5; margin-top: 5px; }
+
+.phone-preview { height: 100%; min-height: 490px; padding: 25px; display: flex; flex-direction: column; gap: 24px; background: #1c302c; overflow: hidden; }
+.phone-preview__top, .phone-preview__caption { display: flex; justify-content: space-between; gap: 14px; margin: 0; color: #c0d6cc; font-family: Consolas, "Courier New", monospace; text-transform: uppercase; letter-spacing: .09em; font-size: .64rem; line-height: 1.5; }
+.phone-preview__screens { display: flex; flex: 1; min-height: 0; align-items: center; justify-content: center; gap: clamp(12px, 2vw, 30px); }
+.phone-preview__screen { position: relative; height: 100%; max-height: 590px; max-width: 45%; aspect-ratio: 540 / 1200; overflow: hidden; border: 1px solid #50655c; border-radius: 13px; background: #0f1816; }
+.phone-preview__screen img { object-fit: contain; object-position: top center; }
+.case-hero__visual:has(.phone-preview) { height: 760px; }
+.case-hero__visual .phone-preview { min-height: 0; }
+.gallery-grid--phone .gallery-item img { height: 480px; padding-top: 18px; }
+@media (max-width: 800px) {
+  .project-row__visual .phone-preview { height: 590px; min-height: 0; }
+  .case-hero__visual:has(.phone-preview) { height: 630px; }
+}
+@media (max-width: 580px) {
+  .phone-preview { padding: 18px 13px; gap: 17px; }
+  .project-row__visual .phone-preview { height: 430px; }
+  .case-hero__visual:has(.phone-preview) { height: 470px; }
+  .phone-preview__screen { height: auto; width: 46%; max-width: 46%; }
+  .phone-preview__top, .phone-preview__caption { font-size: .56rem; }
+  .gallery-grid--phone .gallery-item img { height: 420px; }
+}

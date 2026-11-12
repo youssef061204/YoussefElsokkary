@@ -9,11 +9,11 @@ const siteUrl = process.env.SITE_URL
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Youssef Elsokkary — Software Engineering & Applied ML",
-  description: "Four engineering case studies in behavioral ML, reconciliation, controlled coding agents, and verification-first marketplaces. Architecture, measured results, and source evidence.",
+  description: "Engineering case studies in traffic intelligence, assistive Android navigation, behavioral ML, reconciliation, and coding agents. Architecture, measured results, and source evidence.",
   openGraph: {
     type: "website",
     title: "Youssef Elsokkary — Software Engineering & Applied ML",
-    description: "Four software engineering and machine learning case studies: TradePersona, LedgerMatch, AI Operator, and Zentro.",
+    description: "Software engineering and machine learning case studies: ATLAS, SIGHT, TradePersona, LedgerMatch, AI Operator, and Zentro.",
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
