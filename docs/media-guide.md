@@ -72,3 +72,7 @@ Already present: hero.webp from /ecosystem, task-detail.webp from a local comple
 6. Export about 35–45 seconds to public/projects/zentro/demo.mp4. Keep OAuth credentials and any private repository data out of frame.
 
 The shipped task screenshot depicts local demo state. Do not present its displayed task counts, trust, or escrow amounts as external usage metrics.
+
+## MERIDIAN — public/projects/meridian/
+
+Present: overview.webp, lineage.webp, forecast.webp, incident.webp, recovery.webp, mobile.webp, demo.mp4 (37 s). All were captured with Playwright from the public showcase at https://meridian-chi-ivory.vercel.app, which replays API responses recorded verbatim from the local Spark/Delta/Kafka/DuckDB stack, including one real incident-and-repair run (MERIDIAN `scripts/record_showcase.py`). The data is UCI Online Retail II (CC BY 4.0); incident events are seeded synthetic events, and the unsafe naive sum is shown for contrast only.
