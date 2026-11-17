@@ -75,4 +75,12 @@ The shipped task screenshot depicts local demo state. Do not present its display
 
 ## MERIDIAN — public/projects/meridian/
 
-Present: overview.webp, lineage.webp, forecast.webp, incident.webp, recovery.webp, mobile.webp, demo.mp4 (37 s). All were captured with Playwright from the public showcase at https://meridian-chi-ivory.vercel.app, which replays API responses recorded verbatim from the local Spark/Delta/Kafka/DuckDB stack, including one real incident-and-repair run (MERIDIAN `scripts/record_showcase.py`). The data is UCI Online Retail II (CC BY 4.0); incident events are seeded synthetic events, and the unsafe naive sum is shown for contrast only.
+Present: overview.webp, customers.webp, baskets.webp, signals.webp, sql.webp, incident.webp, recovery.webp, lineage.webp, forecast.webp, mobile.webp, demo.mp4 (44 s, recorded at 1× and encoded at 1.4× speed).
+
+All stills and the video were captured with Playwright, in the dark theme at 1280×800 (stills at 2× and saved at 1920×1200), from MERIDIAN's `npm run build:showcase` output. That is the same build Vercel serves at https://meridian-chi-ivory.vercel.app; it was served locally because the capture machine could not reach vercel.app. The showcase replays API responses recorded verbatim from the local Spark/Delta/Kafka/DuckDB stack, including one real incident-and-repair run (MERIDIAN `scripts/record_showcase.py`).
+
+- **SQL Lab:** the query in sql.webp ran live in the browser with DuckDB-WASM over the published accepted-line marts.
+- **Customer, basket and anomaly views:** these show `analysis/insights/insights.json`, computed from a two-mirror rebuild whose accepted lines and GBP totals match the pinned run exactly (MERIDIAN `docs/insights.md`).
+- **Data and caveats:** UCI Online Retail II (CC BY 4.0). Incident events are seeded synthetic events, and the unsafe naive sum is shown for contrast only.
+
+To recapture, run `npm run build:showcase` and `npx vite preview --mode showcase` in `MERIDIAN/frontend`, then open each view at `#/pulse`, `#/customers`, `#/baskets`, `#/signals`, `#/sql` and `#/reliability`. On Reliability, use Inject controlled incident, then Repair and reprocess.

@@ -1,6 +1,6 @@
 # Youssef Elsokkary — engineering portfolio
 
-A statically generated Next.js portfolio featuring six repository-backed case studies: ATLAS, SIGHT, TradePersona, LedgerMatch, AI Operator, and Zentro. Claims and caveats are centralized in app/lib/projects.ts; optional project media is detected from public/projects/ at build time.
+A statically generated Next.js portfolio featuring seven repository-backed case studies: ATLAS, SIGHT, MERIDIAN, TradePersona, LedgerMatch, AI Operator, and Zentro. Claims and caveats are centralized in app/lib/projects.ts; optional project media is detected from public/projects/ at build time.
 
 ## Run
 
@@ -22,6 +22,11 @@ SIGHT is featured second with genuine native Android emulator captures in a port
 ATLAS is featured first with four actual application screenshots and a recorded walkthrough. Detection/tracking scores cover three predeclared UA-DETRAC test sequences, forecasting uses chronological METR-LA holdout, and CPU throughput includes production processing and persistence. Its public demo uses precomputed real CV outputs. The negative held-out RESCO signal result remains explicit; the separate synthetic improvement is not presented as field validation.
 
 Dependency audit: production dependencies have no reported advisories at publication. The existing development-only Next.js ESLint dependency chain includes `braces` GHSA-vfj7-8cjw-p6xm, for which no patched release exists at verification. It processes repository lint patterns and is not shipped in the portfolio runtime. The suggested major downgrade was not applied.
+
+MERIDIAN is featured third. Its reconciliation, Kafka replay and recovery-drill figures come from local Spark, Delta and Kafka runs on the full 1,067,371-row UCI dataset.
+- **Analytics source:** the customer segmentation, repeat-purchase model (0.793 AUC on an untouched window), basket rules and anomaly figures were computed from a rebuild of the workbook from two public copies of its sheets. That rebuild's accepted lines and GBP totals match the pinned run exactly.
+- **Public showcase:** it replays recorded API responses. Its filters and SQL Lab run live in the visitor's browser with DuckDB-WASM.
+- **Not claimed:** natural-language SQL needs an API key on the deployment and otherwise falls back to curated queries. The Azure Bicep template and Synapse views are prepared, not deployed, and nothing ran in Databricks or Power BI.
 
 TradePersona and LedgerMatch predictive results use held-out synthetic data. AI Operator reports a single frozen live-model coding run separately from deterministic safety tests. Zentro is a locally demonstrated prototype with no verified published outcome benchmark or public deployment.
 
